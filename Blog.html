@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☕CoffeeHub - Blog</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6F4E37;  /* Coffee brown */
+      --secondary: #E5B80B; /* Gold accent */
+      --light: #F5F5F5;
+      --dark: #2C1A0A;
+      --text: #333333;
+    }
+
+    body {
+        font-family: 'Jost', sans-serif;
+      background-color: black;
+      color: var(--light);
+    }
+
+    /* Custom Navbar */
+    .navbar-custom {
+      background-color: var(--dark);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .navbar-brand:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-link:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 1rem;
+      background-color: var(--secondary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: calc(100% - 2rem);
+    }
+
+    /* Blog Section */
+    .blog-section {
+      padding: 6rem 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('https://images.unsplash.com/photo-1453614512568-c4024d13c247?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .section-heading {
+      font-size: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: white;
+    }
+
+    .section-heading span {
+      color: var(--secondary);
+    }
+
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background: var(--secondary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .blog-card {
+      background: rgba(44, 26, 10, 0.85);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .blog-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--secondary);
+    }
+
+    .blog-content {
+      padding: 2rem;
+    }
+
+    .blog-date {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .blog-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .blog-excerpt {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(229, 184, 11, 0.3);
+      padding-top: 1rem;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .author-img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .btn-read {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-read:hover {
+      color: white;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      background-color: var(--dark);
+      padding: 4rem 0;
+      margin-top: 4rem;
+    }
+
+    .newsletter-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .newsletter-title {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .newsletter-text {
+      color: #ccc;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 50px 0 0 50px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      background: rgba(229, 184, 11, 0.1);
+    }
+
+    .btn-subscribe {
+      background: var(--secondary);
+      color: var(--dark);
+      border: none;
+      padding: 0 2rem;
+      border-radius: 0 50px 50px 0;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-subscribe:hover {
+      background: #f1c40f;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .section-heading {
+        font-size: 2.5rem;
+      }
+      
+      .blog-img {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-heading {
+        font-size: 2.2rem;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .newsletter-input,
+      .btn-subscribe {
+        border-radius: 50px;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1.8rem;
+      }
+      
+      .section-heading {
+        font-size: 2rem;
+      }
+      
+      .blog-content {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">☕CoffeeHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="AboutUs.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactUs.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="review.html">Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="Blog.html">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Section -->
+  <section class="blog-section">
+    <div class="container">
+      <h1 class="section-heading">Coffee <span>Blog</span></h1>
+      <div class="row g-4">
+        <!-- Blog Post 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/coffee4.jpg" alt="Coffee Brewing Techniques" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> June 15, 2023
+              </div>
+              <h3 class="blog-title">The Art of Perfect Coffee Brewing</h3>
+              <p class="blog-excerpt">Discover the secrets behind brewing the perfect cup of coffee at home. From water temperature to grind size, learn how small changes can make a big difference in your daily brew.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Author" class="author-img">
+                  <span>John Barista</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/background4.jpg" alt="Coffee Beans" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> May 28, 2023
+              </div>
+              <h3 class="blog-title">Understanding Coffee Bean Varieties</h3>
+              <p class="blog-excerpt">Explore the world of coffee beans from different regions. Learn how altitude, soil, and processing methods affect the flavor profile of your favorite morning beverage.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Author" class="author-img">
+                  <span>Sarah Roast</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/coffee2.jpg" alt="Latte Art" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> April 10, 2023
+              </div>
+              <h3 class="blog-title">Mastering Latte Art: A Beginner's Guide</h3>
+              <p class="blog-excerpt">Step-by-step guide to creating beautiful latte art at home. We break down the techniques used by professional baristas so you can impress your friends with your coffee creations.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Author" class="author-img">
+                  <span>Mike Brewer</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/production.jpg" alt="Coffee Shop" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> March 22, 2023
+              </div>
+              <h3 class="blog-title">The Rise of Specialty Coffee Shops</h3>
+              <p class="blog-excerpt">How specialty coffee shops are changing the way we experience coffee. From direct trade relationships to unique brewing methods, discover what makes these cafes special.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Author" class="author-img">
+                  <span>Emily Grind</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/coffee4.jpg" alt="Coffee Equipment" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> February 15, 2023
+              </div>
+              <h3 class="blog-title">Essential Coffee Equipment for Home Baristas</h3>
+              <p class="blog-excerpt">Our curated list of must-have coffee equipment for serious home brewers. Whether you're just starting out or looking to upgrade your setup, we've got recommendations for every budget.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/men/81.jpg" alt="Author" class="author-img">
+                  <span>David Espresso</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Blog Post 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="blog-card">
+            <img src="pictures/coffee2.jpg" alt="Coffee Health Benefits" class="blog-img">
+            <div class="blog-content">
+              <div class="blog-date">
+                <i class="far fa-calendar-alt"></i> January 5, 2023
+              </div>
+              <h3 class="blog-title">Health Benefits of Coffee: Myths vs Facts</h3>
+              <p class="blog-excerpt">We examine the latest scientific research on coffee and health. Learn about the proven benefits of moderate coffee consumption and separate fact from fiction.</p>
+              <div class="blog-meta">
+                <div class="blog-author">
+                  <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Author" class="author-img">
+                  <span>Jessica Bean</span>
+                </div>
+                <a href="#" class="btn-read">Read More <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Newsletter Section -->
+      <div class="newsletter">
+        <div class="newsletter-container">
+          <h2 class="newsletter-title">Subscribe to Our Coffee Newsletter</h2>
+          <p class="newsletter-text">Get the latest coffee tips, recipes, and news delivered straight to your inbox. Join our community of coffee lovers today!</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" class="newsletter-input" required>
+            <button type="submit" class="btn-subscribe">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap 5 JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

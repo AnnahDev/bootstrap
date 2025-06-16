@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoffeeHub - Customer Reviews</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6F4E37;  /* Coffee brown */
+      --secondary: #E5B80B; /* Gold accent */
+      --light: #F5F5F5;
+      --dark: #2C1A0A;
+      --text: #333333;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: black;
+      color: var(--light);
+    }
+
+    /* Custom Navbar */
+    .navbar-custom {
+      background-color: var(--dark);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .navbar-brand:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-link:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 1rem;
+      background-color: var(--secondary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: calc(100% - 2rem);
+    }
+
+    /* Review Section */
+    .review-section {
+      padding: 5rem 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1445116572660-236099ec97a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .section-heading {
+      font-size: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .section-heading span {
+      color: var(--secondary);
+    }
+
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background: var(--secondary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .quote-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1.5rem;
+      opacity: 0.1;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .customer-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .customer-name {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .rating-stars {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .rating-stars i {
+      font-size: 1.2rem;
+      margin: 0 2px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .section-heading {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-heading {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1.8rem;
+      }
+      
+      .section-heading {
+        font-size: 2rem;
+      }
+      
+      .review-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">☕CoffeeHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="AboutUs.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contactUs.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="review.html">Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Blog.html">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Review Section -->
+  <section class="review-section">
+    <div class="container">
+      <h1 class="text-center section-heading">customer's <span>review</span></h1>
+      
+      <div class="row g-4">
+        <!-- Review 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"The coffee here is absolutely amazing! I come every morning before work. The atmosphere is cozy and the baristas are always friendly."</p>
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">John Deo</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"Best latte art in town! I'm always impressed by the creativity. The coffee is consistently excellent and the pastries are fresh daily."</p>
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">Sarah Smith</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"Great place to work remotely. Fast WiFi, plenty of outlets, and the background music is at just the right volume. Cold brew is my favorite!"</p>
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">Michael Johnson</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"The seasonal drinks are always creative and delicious. I particularly loved their pumpkin spice latte - not too sweet like other places."</p>
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">Emily Davis</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"As a coffee connoisseur, I can say their espresso shots are perfectly extracted. The beans are clearly high quality and freshly roasted."</p>
+            <img src="https://randomuser.me/api/portraits/men/81.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">David Wilson</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i> 
+            </div>
+          </div>
+        </div>
+        
+        <!-- Review 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="review-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/126/126486.png" alt="quote" class="quote-icon">
+            <p class="review-text">"The mocha here is divine! Perfect balance of chocolate and coffee. My friends and I meet here every Saturday for our book club."</p>
+            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="customer" class="customer-img">
+            <h3 class="customer-name">Jessica Brown</h3>
+            <div class="rating-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap 5 JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

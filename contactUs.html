@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☕CoffeeHub - Contact Us</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6F4E37;  /* Coffee brown */
+      --secondary: #E5B80B; /* Gold accent */
+      --light: #F5F5F5;
+      --dark: #2C1A0A;
+      --text: #333333;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: black;
+      color: var(--light);
+    }
+
+    /* Custom Navbar */
+    .navbar-custom {
+      background-color: var(--dark);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .navbar-brand:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+
+    .nav-link:hover {
+      color: var(--secondary);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 1rem;
+      background-color: var(--secondary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: calc(100% - 2rem);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 6rem 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                  url('pictures/background4.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+    }
+
+    .section-heading {
+      font-size: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: white;
+    }
+
+    .section-heading span {
+      color: var(--secondary);
+    }
+
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background: var(--secondary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .contact-container {
+      background-color: rgba(28, 22, 17, 0.85);
+      border-radius: 15px;
+      padding: 3rem;
+      box-shadow: 0 10px 30px rgba(9, 9, 9, 0.3);
+    }
+
+    .map-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      height: 100%;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: none;
+    }
+
+    .form-container {
+      padding: 2rem;
+    }
+
+    .form-floating label {
+      color: #ccc;
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(229, 184, 11, 0.3);
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      background: rgba(229, 184, 11, 0.1);
+      border-color: var(--secondary);
+      box-shadow: none;
+      color: white;
+    }
+
+    .contact-info {
+      margin-top: 3rem;
+    }
+
+    .info-box {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-icon {
+      font-size: 1.8rem;
+      color: var(--secondary);
+      width: 50px;
+      height: 50px;
+      background: rgba(229, 184, 11, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .info-title {
+      font-size: 1.3rem;
+      color: var(--secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .info-text {
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    /* Button Styles */
+    .btn-custom {
+      background: var(--secondary);
+      color: var(--dark);
+      font-weight: 600;
+      border-radius: 50px;
+      padding: 0.9rem 2.5rem;
+      border: 2px solid var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background: transparent;
+      color: var(--secondary);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .section-heading {
+        font-size: 2.5rem;
+      }
+      
+      .contact-container {
+        padding: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-heading {
+        font-size: 2.2rem;
+      }
+      
+      .map-container {
+        margin-bottom: 2rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1.8rem;
+      }
+      
+      .section-heading {
+        font-size: 2rem;
+      }
+      
+      .btn-custom {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+      
+      .info-box {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .info-icon {
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">☕CoffeeHub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="AboutUs.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="review.html">Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Blog.html">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <h1 class="section-heading">Contact <span>Us</span></h1>
+      <div class="contact-container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="map-container">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215256027765!2d-73.9878449241641!3d40.74844097138968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzU0LjQiTiA3M8KwNTknMTkuNiJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-container">
+              <form>
+                <div class="form-floating mb-4">
+                  <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                  <label for="name">Your Name</label>
+                </div>
+                <div class="form-floating mb-4">
+                  <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                  <label for="email">Your Email</label>
+                </div>
+                <div class="form-floating mb-4">
+                  <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                  <label for="subject">Subject</label>
+                </div>
+                <div class="form-floating mb-4">
+                  <textarea class="form-control" id="message" placeholder="Your Message" style="height: 150px" required></textarea>
+                  <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="btn btn-custom">Send Message</button>
+              </form>
+
+              <div class="contact-info">
+                <div class="info-box">
+                  <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <h3 class="info-title">Location</h3>
+                    <p class="info-text">123 Coffee Street, Brew District, NY 10001</p>
+                  </div>
+                </div>
+                <div class="info-box">
+                  <div class="info-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div>
+                    <h3 class="info-title">Phone</h3>
+                    <p class="info-text">+1 (555) 123-4567</p>
+                  </div>
+                </div>
+                <div class="info-box">
+                  <div class="info-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <h3 class="info-title">Email</h3>
+                    <p class="info-text">info@coffeehub.com</p>
+                  </div>
+                </div>
+                <div class="info-box">
+                  <div class="info-icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div>
+                    <h3 class="info-title">Opening Hours</h3>
+                    <p class="info-text">Monday-Friday: 7am - 9pm<br>Weekends: 8am - 10pm</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap 5 JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
